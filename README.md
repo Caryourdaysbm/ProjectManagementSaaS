@@ -22,7 +22,7 @@ git clone https://github.com/Caryourdaysbm/ProjectManagementSaaS
 ```
 
 ### 2. Configure environment variables
-Copy the `.env.example` file to `.env` in the `backend` directory and edit it to configure your database and JWT settings.
+Copy the `.env.example` file to `.env` in the `root` directory and edit it to configure your database and JWT settings.
 
 ### 3. Build and start the containers
 ```bash
