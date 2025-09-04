@@ -12,13 +12,39 @@ Multi-tenant backend with JWT auth, role-based access, and Postgres.
 - Alembic migrations
 - Dockerized (api + db)
 
+---
 
+## 🚀 Local Setup with Docker
 
-## Docker
+### 1. Clone the repository
 ```bash
+git clone https://github.com/Caryourdaysbm/ProjectManagementSaaS
+```
 
+### 2. Configure environment variables
+Copy the `.env.example` file to `.env` in the `backend` directory and edit it to configure your database and JWT settings.
+
+### 3. Build and start the containers
+```bash
 docker compose up --build
 ```
+This will:
+- Build the FastAPI backend image
+- Start a Postgres database container
+- Run Alembic migrations automatically
+- Launch the API server on [http://localhost:8000](http://localhost:8000)
+
+### 4. Access the API
+- API root: [http://localhost:8000/](http://localhost:8000/)
+- Interactive docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+- OpenAPI schema: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
+
+### 5. Stopping the containers
+```bash
+docker compose down
+```
+
+---
 
 ## Auth Flow
 1. `POST /auth/register_org` → create organization + first admin user
@@ -30,6 +56,8 @@ docker compose up --build
    - Create/Update/Delete projects
 5. Members:
    - CRUD only **their** own tasks
+
+---
 
 ## ERD (Mermaid)
 ```mermaid
@@ -70,12 +98,16 @@ erDiagram
     }
 ```
 
+---
+
 ## Migrations
-- Alembic preconfigured. To generate future migrations:
+- Alembic is preconfigured. To generate future migrations:
 ```bash
 alembic revision --autogenerate -m "desc"
 alembic upgrade head
 ```
+
+---
 
 ## Test Users
 - Register an org via `/auth/register_org`, then login.
@@ -84,7 +116,4 @@ alembic upgrade head
   "org_name": "Acme Inc",
   "subscription_tier": "free",
   "admin_name": "Alice",
-  "admin_email": "alice@acme.com",
-  "password": "Password123!"
-}
-```
+  "admin_email":
